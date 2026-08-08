@@ -1,6 +1,7 @@
 from typing import Optional
-from typing_extensions import TypedDict, Annotated
+from typing_extensions import TypedDict, Annotated, Literal
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -10,12 +11,15 @@ llm = HuggingFaceEndpoint(
 )
 model = ChatHuggingFace(llm=llm)
 
-class Review(TypedDict):
-    key_themes : Annotated[list[str], 'write down all key themes discussed in the review in a list']
-    summary: Annotated[str,'A brief summary of the review.']
-    sentiment: Annotated[str, 'Return sentiment of the review either negative ,positive, neutral']
-    pros: Annotated[Optional[list[str]], 'write doen all the pros inside a list']
-    cons: Annotated[Optional[list[str]], 'write doen all the cons inside a list']
+
+class Review(BaseModel):
+
+    key_themes : list[str] = Field(description='write down all key themes discussed in the review in a list')
+    summary : str = Field(description='A brief summary of the review.')
+    sentiment: Literal['pos', 'neg', 'neutral'] = Field(description='Return sentiment as positive, negative, or neutral')
+    pros : Optional[list[str]] = Field(description='write doen all the pros inside a list')
+    cons : Optional[list[str]] = Field(description='write doen all the cons inside a list')
+    name : Optional[str] = Field(description='write the name of the reviewer.')
 
 structured_model = model.with_structured_output(Review)
 
@@ -45,22 +49,3 @@ print(type(result))  #--> dict
 
 
 
-# -------------------------------
-# output --> 
-# -------------------------------
-
-'''
-{
-    'key_themes': ['Powerhouse', 'S-Pen', 'Camera', 'Size', 'Price'],
-    
-    'summary': 'The Samsung Galaxy S24 Ultra is a powerful device with a great camera, but its size   and price make it a drawback.',
-
-    'sentiment': 'neutral',
-
-    'pros': ['Powerful processor', 'Stunning 200MP camera', 'Long battery life with fast charging', 'S-Pen support'],
-
-    'cons': ['Bulky and heavy', 'Bloatware in One UI', 'Expensive']
- }
-
-    <class 'dict'>
-'''
