@@ -1,8 +1,8 @@
-LangChain Practice 🚀
+LangChain Practice 
 
 This repository contains my code while learning LangChain and building LLM-based applications.
 
-📚 Topics
+Topics
 
 * Langchain-models
 * Langchain-prompts
@@ -12,7 +12,7 @@ This repository contains my code while learning LangChain and building LLM-based
 * Langchain-runnables
 * and more
 
-🛠️ Tech Stack
+Tech Stack
 
 * Python
 * LangChain
