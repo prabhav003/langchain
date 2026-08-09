@@ -9,7 +9,8 @@ This repository contains my code while learning LangChain and building LLM-based
 * Langchain-structures outputs
 * Langchain-output parser
 * Langchain-chains
-and more
+* Langchain-runnables
+* and more
 
 🛠️ Tech Stack
 
