@@ -16,4 +16,4 @@ This repository contains my code while learning LangChain and building LLM-based
 
 * Python
 * LangChain
-* Hugging Face
+* HuggingFace
