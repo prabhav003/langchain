@@ -1,6 +1,14 @@
-from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
+from langchain_huggingface import HuggingFaceEmbeddings 
+from langchain_experimental.text_splitter import SemanticChunker
 
-text = '''The morning arrived quietly over the small town, carrying a cool breeze and the distant sound of birds moving between the trees. Streets that had been empty throughout the night slowly began to fill with people, bicycles, delivery trucks, and the occasional yellow bus. Near the center of town, an old clock tower stood above the buildings, its hands moving steadily as if nothing in the world had ever changed.
+embedding = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+
+text_splitter = SemanticChunker(
+    embedding, breakpoint_threshold_type='standard_deviation',
+    breakpoint_threshold_amount=1
+)
+
+sample = '''The morning arrived quietly over the small town, carrying a cool breeze and the distant sound of birds moving between the trees. Streets that had been empty throughout the night slowly began to fill with people, bicycles, delivery trucks, and the occasional yellow bus. Near the center of town, an old clock tower stood above the buildings, its hands moving steadily as if nothing in the world had ever changed.
 
 Inside a nearby café, several customers sat around wooden tables. One person was reading a newspaper, another was typing quickly on a laptop, and a group of friends were discussing their plans for the weekend. The smell of freshly prepared coffee filled the room, mixing with the sweet scent of bread and warm pastries. Behind the counter, the café owner moved from one task to another, greeting familiar customers with a smile.
 
@@ -18,13 +26,7 @@ On the walk home, the student noticed small puddles scattered along the sidewalk
 
 At home, dinner was waiting on the table. The student placed the backpack beside a chair, washed their hands, and sat down. The evening continued with simple conversations, warm food, and the comforting knowledge that an important task had finally been completed. Tomorrow would bring another collection of problems, decisions, and possibilities, but for tonight, everything felt peaceful.'''
 
-splitter = RecursiveCharacterTextSplitter(
-    chunk_size=100,
-    chunk_overlap=0
-)
-
-chunks = splitter.split_text(text)
-
-print(len(chunks))
-print(chunks)
+docs = text_splitter.create_documents([sample])
+print(len(docs))
+print(docs)
 
