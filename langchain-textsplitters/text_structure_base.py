@@ -1,0 +1,30 @@
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+text = '''The morning arrived quietly over the small town, carrying a cool breeze and the distant sound of birds moving between the trees. Streets that had been empty throughout the night slowly began to fill with people, bicycles, delivery trucks, and the occasional yellow bus. Near the center of town, an old clock tower stood above the buildings, its hands moving steadily as if nothing in the world had ever changed.
+
+Inside a nearby café, several customers sat around wooden tables. One person was reading a newspaper, another was typing quickly on a laptop, and a group of friends were discussing their plans for the weekend. The smell of freshly prepared coffee filled the room, mixing with the sweet scent of bread and warm pastries. Behind the counter, the café owner moved from one task to another, greeting familiar customers with a smile.
+
+Outside, clouds slowly gathered above the rooftops. Nobody seemed particularly concerned because the weather forecast had predicted only a small amount of rain. A young student walked toward the library carrying a heavy backpack filled with books. Along the way, the student stopped near a public garden and watched a group of children playing beside a fountain. Their laughter echoed across the open space.
+
+The library itself was an unusual building. It had large windows, narrow staircases, and hundreds of shelves arranged across several rooms. Some books were new and brightly colored, while others had faded covers and pages that had turned slightly yellow with age. At the back of the building was a quiet reading room where sunlight entered through a tall glass window.
+
+The student found an empty chair near the window and opened a notebook. The goal for the day was simple: finish a difficult assignment before evening. Several pages were filled with notes, diagrams, questions, and incomplete ideas. At first, the task seemed complicated, but after reading the material carefully, the student began to understand how the different pieces connected.
+
+Hours passed without much notice. Outside, the predicted rain finally began to fall. Drops of water moved down the glass in irregular patterns, reflecting the lights from nearby buildings. The sound of rain created a calm atmosphere inside the library. People spoke more quietly, and pages turned slowly as everyone continued working.
+
+By late afternoon, the assignment was nearly complete. The student reviewed each section carefully, corrected several mistakes, and added a few final observations. Before leaving, the notebook was closed and placed safely inside the backpack. The rain had stopped, leaving the streets shiny and reflective.
+
+On the walk home, the student noticed small puddles scattered along the sidewalk. Streetlights had begun turning on, and the sky was changing from gray to a deep shade of blue. The town looked different after the rain, cleaner and quieter than before. Even though the day had been ordinary, it felt strangely satisfying.
+
+At home, dinner was waiting on the table. The student placed the backpack beside a chair, washed their hands, and sat down. The evening continued with simple conversations, warm food, and the comforting knowledge that an important task had finally been completed. Tomorrow would bring another collection of problems, decisions, and possibilities, but for tonight, everything felt peaceful.'''
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=100,
+    chunk_overlap=0
+)
+
+chunks = splitter.split_text(text)
+
+print(len(chunks))
+print(chunks)
+
