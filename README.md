@@ -10,6 +10,9 @@ Topics
 * Langchain-output parser
 * Langchain-chains
 * Langchain-runnables
+* langchain-document-loader
+* langchain-text-splitters
+* langchain-vector-stores
 * and more
 
 Tech Stack
