@@ -13,7 +13,10 @@ Topics
 * langchain-document-loader
 * langchain-text-splitters
 * langchain-vector-stores
+* langchain-rag
+* langchain-tools
 * and more
+
 
 Tech Stack
 
